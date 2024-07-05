@@ -32,7 +32,7 @@ trap shutdown TERM
 
 
 set -x
-./conformance.test   > >(tee "${RESULTS_DIR}"/oci.log) && ret=0 || ret=$?
+./conformance.test -ginkgo.focus="${OCI_FOCUS}" -ginkgo.noColor  > >(tee "${RESULTS_DIR}"/oci.log) && ret=0 || ret=$?
 set +x
 saveResults
 exit "${ret}"
