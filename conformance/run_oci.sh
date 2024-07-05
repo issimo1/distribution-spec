@@ -32,7 +32,7 @@ trap shutdown TERM
 
 
 set -x
-conformance.test --report-dir="${RESULTS_DIR}"   > >(tee "${RESULTS_DIR}"/oci.log) && ret=0 || ret=$?
+./conformance.test   > >(tee "${RESULTS_DIR}"/oci.log) && ret=0 || ret=$?
 set +x
 saveResults
 exit "${ret}"

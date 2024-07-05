@@ -14,8 +14,8 @@ RUN CGO_ENABLED=0 go test -c -o /conformance.test --ldflags="-X ${GO_PKG}.Versio
 # ---
 # Stage 2: Final image with nothing but certs & binary
 # ---
-FROM scratch AS final
+FROM alpine:latest AS final
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /conformance.test /conformance.test
-COPY --from=builder /run_oci.sh /run_oci.sh
-ENTRYPOINT ["/conformance.test"]
+COPY /run_oci.sh /run_oci.sh
+ENTRYPOINT ["/run_oci.sh"]
