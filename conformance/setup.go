@@ -321,8 +321,8 @@ func init() {
 	skipEmptyLayerTest, _ = strconv.ParseBool(os.Getenv(envVarPushEmptyLayer))
 	deleteManifestBeforeBlobs, _ = strconv.ParseBool(os.Getenv(envVarDeleteManifestBeforeBlobs))
 
-	reportJUnitFilename = os.Getenv("RESULTS_DIR") + "junit.xml"
-	reportHTMLFilename = os.Getenv("RESULTS_DIR") + "report.html"
+	reportJUnitFilename = os.Getenv("RESULTS_DIR") + "/" + "junit.xml"
+	reportHTMLFilename = os.Getenv("RESULTS_DIR") + "/" + "report.html"
 	suiteDescription = "OCI Distribution Conformance Tests"
 }
 
