@@ -15,6 +15,13 @@ RUN CGO_ENABLED=0 go test -c -o /conformance.test --ldflags="-X ${GO_PKG}.Versio
 # Stage 2: Final image with nothing but certs & binary
 # ---
 FROM alpine:latest AS final
+ENV OCI_TEST_PULL 1
+ENV OCI_TEST_PUSH 1
+ENV OCI_TEST_CONTENT_DISCOVERY 1
+ENV OCI_TEST_CONTENT_MANAGEMENT 1
+ENV OCI_HIDE_SKIPPED_WORKFLOWS 0
+ENV OCI_DEBUG 0
+ENV OCI_DELETE_MANIFEST_BEFORE_BLOBS 0
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /conformance.test /conformance.test
 COPY /run_oci.sh /run_oci.sh
